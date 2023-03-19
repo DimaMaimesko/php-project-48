@@ -1,0 +1,17 @@
+
+
+name: say-hello
+
+on:
+  push:
+    branches:
+      - 'test-github-actions'
+    tags:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run:  make say-hello
