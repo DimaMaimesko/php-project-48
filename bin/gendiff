@@ -2,6 +2,8 @@
 
 <?php
 
+use function Differ\Differ\genDiff;
+
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
 $autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
 if (file_exists($autoloadPath1)) {
@@ -31,4 +33,13 @@ $params = [
     'version' => '1.0.0'
 ];
 
-Docopt::handle($doc, $params);
+$files = Docopt::handle($doc, $params);
+
+//dd($files);
+
+$diff = genDiff(
+    $files['<firstFile>'],
+    $files['<secondFile>']
+);
+
+print_r($diff);
